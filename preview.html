@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suri-Brown Wedding | Find Your Seat</title>
+<style>
+:root{--green:#173d2b;--cream:#fbfaf6;--gold:#b89b65;--muted:#69736c}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:#202822;font-family:Georgia,serif}
+header{text-align:center;padding:44px 18px 24px}.date{font:600 11px Arial;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+h1{margin:8px 0 2px;font-size:clamp(38px,6vw,64px);font-weight:400;color:var(--green)}.sub{font:13px Arial;color:var(--muted)}
+main{max-width:1280px;margin:auto;padding:0 16px 60px}
+.search{max-width:650px;margin:10px auto 28px;background:#fff;border:1px solid #e5dfd3;border-radius:18px;padding:18px;box-shadow:0 8px 25px #173d2b12}
+.row{display:flex;gap:8px}input{flex:1;border:1px solid #d0c9bb;border-radius:11px;padding:14px 16px;font:15px Arial;outline:none}input:focus{border-color:var(--green)}
+.find{border:0;border-radius:11px;background:var(--green);color:#fff;padding:0 20px;font:bold 13px Arial;cursor:pointer}
+.results{display:none;margin-top:10px}.hit{font:14px Arial;padding:12px;background:#f7f4ed;border-radius:10px;margin-top:6px;cursor:pointer}.hit b{color:var(--green)}
+.title{text-align:center;color:var(--green);font-weight:400;margin:28px 0 12px}
+.room{position:relative;width:min(100%,1180px);aspect-ratio:1020/892;margin:auto;background:#fff;border:2px solid #777;border-radius:3px 3px 40px 40px;overflow:hidden}
+.topdoor{position:absolute;top:-1px;width:7%;height:4%;border:2px solid #777;border-top:0;background:#fff}.d1{left:24%}.d2{left:67%}
+.dj{position:absolute;left:8%;top:8%;font:15px Arial;color:#c5531d}.backdrop{position:absolute;left:38%;top:9%;font:15px Arial;color:#c5531d}
+.dance{position:absolute;left:38%;top:40%;width:19%;height:22%;background:#e9eceb;border:1px solid #9da5a1;display:grid;place-items:center;text-align:center;font:bold 10px Arial;letter-spacing:.13em;color:#6d756f;text-transform:uppercase}
+.buffet{position:absolute;right:2.2%;top:34%;height:24%;border-left:12px solid #e4e7e5;border-right:1px solid #777;writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;padding-right:8px;font:bold 11px Arial}
+.bar{position:absolute;left:5%;bottom:19%;font:bold 13px Arial}.bottombar{position:absolute;left:31%;bottom:2%;font:bold 10px Arial}.divider{position:absolute;left:0;right:0;bottom:17%;border-top:2px solid #777}
+.table{position:absolute;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#eef0ef;border:1.5px solid #78817c;box-shadow:0 0 0 7px #fff,0 0 0 8px #b9bfbb;display:grid;place-items:center;color:var(--green);font:bold 11px Arial;cursor:pointer;z-index:3;transition:.15s}
+.table:hover,.table.active{background:var(--green);color:#fff;transform:translate(-50%,-50%) scale(1.08)}
+.tableLabel{position:absolute;top:calc(100% + 11px);left:50%;transform:translateX(-50%);width:125px;padding:3px 5px;background:rgba(255,255,255,.95);border-radius:5px;color:var(--green);font:600 10px/1.15 Arial;text-align:center;pointer-events:none}
+.note{text-align:center;margin:13px 0;font:12px Arial;color:var(--muted)}
+.panel{display:none;max-width:650px;margin:20px auto;background:#fff;border:1px solid #e5dfd3;border-radius:18px;padding:22px}.panel.show{display:block}
+.panel h2{margin:0;color:var(--green);font-weight:400}.tname{margin:4px 0 15px;font:11px Arial;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}.guests{columns:2;border-top:1px solid #eee7dc;padding-top:12px}.guest{font:14px/1.9 Arial;break-inside:avoid}
+@media(max-width:650px){header{padding-top:28px}.row{display:block}.find{width:100%;padding:13px;margin-top:7px}.room{width:100%;aspect-ratio:1020/892}.table{width:29px;height:29px;box-shadow:0 0 0 4px #fff,0 0 0 5px #b9bfbb;font-size:8px}.tableLabel{width:76px;top:calc(100% + 6px);font-size:6.5px;line-height:1.05;padding:2px}.dj,.backdrop{font-size:8px}.dance{font-size:6px}.guests{columns:1}}
+.heart{font-size:17px;line-height:1}@media(max-width:650px){.heart{font-size:12px}}
+.sweetheart{
+ position:absolute;left:47.5%;top:11.5%;transform:translateX(-50%);
+ width:150px;height:70px;z-index:3;
+}
+.sweet-table{
+ position:absolute;left:27px;top:12px;width:96px;height:28px;
+ background:#eef0ef;border:1.5px solid #78817c;
+ box-shadow:0 0 0 5px #fff,0 0 0 6px #b9bfbb;
+ border-radius:3px;
+}
+.sweet-chair{
+ position:absolute;top:-17px;width:19px;height:23px;
+ background:#fff;border:1.5px solid #78817c;border-radius:8px 8px 3px 3px;
+}
+.sweet-chair:after{
+ content:"";position:absolute;left:3px;right:3px;bottom:-6px;height:5px;
+ border-left:1px solid #78817c;border-right:1px solid #78817c;
+}
+.sweet-chair.c1{left:46px}.sweet-chair.c2{right:46px}
+.sweet-label{
+ position:absolute;top:76px;left:50%;transform:translateX(-50%);
+ width:145px;padding:3px 5px;background:rgba(255,255,255,.95);
+ border-radius:5px;color:var(--green);
+ font:600 10px/1.15 Arial,sans-serif;text-align:center;white-space:nowrap;
+}
+@media(max-width:650px){
+ .sweetheart{width:88px;height:46px;top:11%}
+ .sweet-table{left:18px;top:8px;width:52px;height:17px;box-shadow:0 0 0 3px #fff,0 0 0 4px #b9bfbb}
+ .sweet-chair{top:-12px;width:13px;height:17px}
+ .sweet-chair.c1{left:27px}.sweet-chair.c2{right:27px}
+ .sweet-label{top:49px;width:90px;font-size:6.5px;padding:2px}
+}
+
+.dj{
+ position:absolute;left:8%;top:7%;width:74px;height:70px;
+ color:var(--green);font:600 10px/1.15 Arial,sans-serif;
+}
+.dj-square{
+ position:absolute;left:50%;top:0;transform:translateX(-50%);
+ width:38px;height:38px;background:#eef0ef;border:1.5px solid #78817c;
+ box-shadow:0 0 0 5px #fff,0 0 0 6px #b9bfbb;border-radius:3px;
+}
+.dj-label{
+ position:absolute;top:51px;left:50%;transform:translateX(-50%);
+ width:90px;padding:3px 5px;background:rgba(255,255,255,.95);
+ border-radius:5px;color:var(--green);font:600 10px/1.15 Arial,sans-serif;
+ text-align:center;white-space:nowrap;
+}
+@media(max-width:650px){
+ .dj{left:8%;top:7%;width:48px;height:45px}
+ .dj-square{width:24px;height:24px;box-shadow:0 0 0 3px #fff,0 0 0 4px #b9bfbb}
+ .dj-label{top:32px;width:52px;font-size:6.5px;padding:2px}
+}
+</style>
+<style>
+/* VISUAL AESTHETIC ONLY — layout/coordinates remain from NO_CLICK_TABLE_NUMBERS */
+:root{
+ --emerald:#063d2a;
+ --emerald2:#0a4a34;
+ --rustic-orange:#c9682f;
+ --rustic-orange-dark:#93451f;
+ --cream:#f4e5c5;
+ --ivory:#fff8e9;
+}
+html,body{
+ background:#031e16 !important;
+}
+body{
+ background:
+ radial-gradient(circle at 18% 12%,rgba(255,255,255,.04),transparent 22%),
+ linear-gradient(135deg,var(--emerald2),var(--emerald) 58%,#043522) !important;
+ color:var(--cream) !important;
+}
+header .date{color:var(--cream) !important;}
+header h1,.title{color:var(--cream) !important;}
+header .sub,.note{color:rgba(244,229,197,.82) !important;}
+.search,.panel{
+ background:var(--ivory) !important;
+ color:#202822 !important;
+ border-color:#d7c39d !important;
+}
+.find{background:var(--emerald) !important;color:var(--ivory) !important;}
+.room{
+ background:var(--emerald) !important;
+ border-color:var(--cream) !important;
+ box-shadow:inset 0 0 34px rgba(0,0,0,.18);
+}
+.table{
+ background:linear-gradient(145deg,#d77a3d,var(--rustic-orange)) !important;
+ border-color:var(--rustic-orange-dark) !important;
+ box-shadow:0 0 0 7px var(--ivory),0 0 0 8px #d59a64 !important;
+ color:var(--emerald) !important;
+}
+.table:hover,.table.active{
+ background:#dc7b3c !important;
+ color:var(--emerald) !important;
+}
+.tableLabel{
+ background:rgba(6,61,42,.94) !important;
+ color:var(--cream) !important;
+}
+.sweet-table,.dj-square{
+ background:linear-gradient(145deg,#d77a3d,var(--rustic-orange)) !important;
+ border-color:var(--rustic-orange-dark) !important;
+}
+.sweet-label,.dj-label{
+ background:rgba(6,61,42,.94) !important;
+ color:var(--cream) !important;
+}
+.sweet-chair{
+ background:var(--ivory) !important;
+ border-color:#d59a64 !important;
+}
+.dance{
+ background:rgba(244,229,197,.11) !important;
+ border-color:rgba(244,229,197,.55) !important;
+ color:var(--cream) !important;
+}
+.buffet,.bar,.bottombar{color:var(--cream) !important;}
+.divider{border-color:rgba(244,229,197,.5) !important;}
+@media(max-width:650px){
+ .table{
+   box-shadow:0 0 0 4px var(--ivory),0 0 0 5px #d59a64 !important;
+ }
+}
+</style>
+</head>
+<body>
+<header><div class="date">October 16, 2026</div><h1>Find your stay in Chicago</h1><div class="sub">Suri–Brown Wedding Reception</div></header>
+<main>
+<section class="search"><div class="row"><input id="q" placeholder="Type your name…" autocomplete="off"><button class="find" onclick="searchGuest()">Find my table</button></div><div id="results" class="results"></div></section>
+<h2 class="title">Grand Ballroom</h2>
+<div class="room" id="room"><div class="topdoor d1"></div><div class="topdoor d2"></div><div class="dj"><div class="dj-square"></div><div class="dj-label">DJ Table</div></div><div class="sweetheart"><div class="sweet-chair c1"></div><div class="sweet-table"></div><div class="sweet-chair c2"></div><div class="sweet-label">Mr and Mrs. Brown</div></div><div class="dance">Dance<br>Floor</div><div class="buffet">Buffet</div><div class="bar">Bar</div><div class="divider"></div><div class="bottombar">Bar</div></div>
+<div class="note">Tap a table to see everyone seated there.</div>
+<section id="panel" class="panel"><h2 id="pt"></h2><div id="pn" class="tname"></div><div id="guests" class="guests"></div></section>
+</main>
+<script>
+const tables={"1": {"name": "Crying Tiger", "guests": ["Lisa", "Jason", "Randy", "Tina", "Amber", "Nushraa", "Kat", "Kyan", "Derrick", "Greg Brown"]}, "2": {"name": "Field Museum", "guests": ["Muskaan", "Armaan", "Priya", "Benek", "Ekta", "Nitya", "Sonali", "Sabrina", "Devina", "Juhi"]}, "3": {"name": "Buckingam Fountain", "guests": ["Krunal", "Alana", "Sayan", "Sabbena", "Lude", "Esdras", "Trupti", "Aaron"]}, "4": {"name": "Lincoln park zoo", "guests": ["Erika", "Maria", "Natalie", "Chelsie (Jude)", "Omar", "Rummanu"]}, "5": {"name": "Christmaskindle", "guests": ["Rori", "John", "Lauren", "Chantel", "Bruna", "Ian"]}, "6": {"name": "Chicago river", "guests": ["Jitender", "Pinky", "Rama", "Suresh", "Shewtha", "Shrey", "Anurag", "Shweta"]}, "7": {"name": "Navy pier", "guests": ["Sheetal", "Mahesh", "Uma", "Suresh", "Seema", "Sanjeev"]}, "8": {"name": "Wrigley field", "guests": ["Priya", "Benek", "Ekta", "Nitya", "Romi", "Sandhya", "Bina Suri", "Papa's mami"]}, "9": {"name": "White Sox stadium", "guests": ["Harmeet", "Arunesh", "Manju Ohri", "Pooja Ohri"]}, "10": {"name": "Lincoln Park Conservatory", "guests": ["Ammu", "Naveen", "Debra", "Joe", "Rashmi", "Shashi"]}, "11": {"name": "Soldier field", "guests": ["Naweed", "Farheen", "Isma", "Israa", "Rayyan"]}, "12": {"name": "Shedd Aquarium", "guests": ["Gurusharan Bhogal", "Reena Bhogal", "Rick Chopra", "Rick Chopra", "Kalpana Chandra", "Sandy Chandra"]}, "13": {"name": "The Bean", "guests": ["Neha Puri", "Chandar Puri", "Ritvik Puri", "Mayank Puri", "Jolly", "Sandeep", "Priya", "Nishant"]}, "14": {"name": "Chicago Theatre", "guests": ["Gurusharan Bhogal", "Reena Bhogal", "Rick Chopra", "Shelley Chopra", "Kalpana Chandra", "Sandy Chandra", "Naweed"]}, "15": {"name": "Jack's Halloween", "guests": ["Neha Puri", "Chandar Puri", "Ritvik Puri", "Mayank Puri", "Harmeet", "Arunesh", "Manju Ohri", "Puja Ohri"]}, "16": {"name": "Vendor Table", "guests": []}};const positions={"1": {"x": 31, "y": 27}, "2": {"x": 63, "y": 27}, "3": {"x": 20, "y": 33}, "4": {"x": 74, "y": 34}, "5": {"x": 10, "y": 38}, "6": {"x": 85, "y": 42}, "7": {"x": 31, "y": 39}, "8": {"x": 63, "y": 39}, "9": {"x": 20, "y": 46}, "10": {"x": 74, "y": 48}, "11": {"x": 10, "y": 51}, "12": {"x": 31, "y": 52}, "13": {"x": 63, "y": 53}, "14": {"x": 20, "y": 61}, "15": {"x": 74, "y": 61}, "16": {"x": 63, "y": 68}};const room=document.getElementById("room");
+for(let n=1;n<=16;n++){const p=positions[n],t=tables[n],b=document.createElement("button");b.className="table";b.dataset.table=n;b.innerHTML=`<span class="heart">♥️</span><span class="tableLabel">${t.name}</span>`;b.style.left=p.x+"%";b.style.top=p.y+"%";b.onclick=()=>show(n);room.appendChild(b)}
+const norm=s=>s.toLowerCase().trim().replace(/\s+/g," ");
+function searchGuest(){const q=norm(document.getElementById("q").value),r=document.getElementById("results");if(!q){r.style.display="none";return}let a=[];Object.entries(tables).forEach(([n,t])=>t.guests.forEach(g=>{if(norm(g).includes(q))a.push([g,n,t.name])}));r.innerHTML=a.length?a.map(x=>`<div class="hit" onclick="show(${x[1]})"><b>${x[0]}</b> — Table ${x[1]} · ${x[2]}</div>`).join(""):'<div class="hit">No match found. Try a first or last name.</div>';r.style.display="block"}
+document.getElementById("q").addEventListener("input",e=>{if(e.target.value.length>=2)searchGuest()});document.getElementById("q").addEventListener("keydown",e=>{if(e.key==="Enter")searchGuest()});
+function show(n){const t=tables[n];document.querySelectorAll(".table").forEach(x=>x.classList.toggle("active",x.dataset.table==n));document.getElementById("pt").textContent=t.name;document.getElementById("pn").textContent="";document.getElementById("guests").innerHTML=t.guests.length?t.guests.map(g=>`<div class="guest">${g}</div>`).join(""):(n===16?'<div class="guest">Vendor Table</div>':'<div class="guest">No guests are listed for this table in the spreadsheet.</div>');document.getElementById("panel").classList.add("show");document.getElementById("panel").scrollIntoView({behavior:"smooth",block:"nearest"})}
+</script></body></html>
