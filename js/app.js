@@ -149,9 +149,19 @@ function renderMap(container, { activeId = null, showPath = false } = {}) {
   if (showPath && activeId && data.positions[activeId]) {
     const p = data.positions[activeId];
     const midY = (LOUNGE_ENTRY.y + p.y) / 2;
+    const d = `M ${LOUNGE_ENTRY.x} ${LOUNGE_ENTRY.y} C ${LOUNGE_ENTRY.x} ${midY}, ${p.x} ${midY}, ${p.x} ${p.y}`;
+    const maskId = `wf-route-${container.id || "map"}`;
     path = `<svg class="wf-map__path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M ${LOUNGE_ENTRY.x} ${LOUNGE_ENTRY.y} C ${LOUNGE_ENTRY.x} ${midY}, ${p.x} ${midY}, ${p.x} ${p.y}"
-        fill="none" stroke="rgba(26,102,64,0.45)" stroke-width="1.1" stroke-dasharray="2.2 1.6" stroke-linecap="round" />
+      <defs>
+        <mask id="${maskId}" maskUnits="userSpaceOnUse" x="-10" y="-10" width="120" height="120">
+          <rect x="-10" y="-10" width="120" height="120" fill="#000" />
+          <path class="wf-map__path-reveal" pathLength="1" d="${d}"
+            fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-dasharray="1 1" stroke-dashoffset="1" />
+        </mask>
+      </defs>
+      <path d="${d}"
+        fill="none" stroke="rgba(26,102,64,0.45)" stroke-width="1.1" stroke-dasharray="2.2 1.6" stroke-linecap="round"
+        mask="url(#${maskId})" />
     </svg>`;
   }
 

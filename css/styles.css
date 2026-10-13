@@ -566,6 +566,29 @@ body.wf {
   overflow: visible;
 }
 
+/* Reveal the dashed route once, from the lounge toward the table, then hold. */
+.wf-map__path-reveal {
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  animation: wf-route-draw 1.25s cubic-bezier(0.33, 0, 0.2, 1) forwards;
+}
+
+@keyframes wf-route-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wf-map__path-reveal {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
 .wf-map__dot {
   position: absolute;
   width: 0.55rem;
