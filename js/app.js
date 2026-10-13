@@ -45,6 +45,12 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
+function foundStatusHtml({ guest, tableName, isTable }) {
+  const table = `<strong>${escapeHtml(tableName)}</strong>`;
+  if (isTable) return `Found table ${table}.`;
+  return `Found <strong>${escapeHtml(guest)}</strong> at ${table}.`;
+}
+
 function visibleTableIds() {
   return Object.keys(data.tables)
     .filter((id) => id !== "16" && data.positions[id])
@@ -416,9 +422,11 @@ function runSearch(rawQuery, { fromSubmit = false } = {}) {
   matchPicker.hidden = true;
   matchPicker.innerHTML = "";
   const best = matches[0];
-  searchStatus.textContent = best.isTable
-    ? `Found table ${best.tableName}.`
-    : `Found ${best.guest} at ${best.tableName}.`;
+  searchStatus.innerHTML = foundStatusHtml({
+    guest: best.guest,
+    tableName: best.tableName,
+    isTable: best.isTable,
+  });
   showResult(best.tableId, {
     matchedGuest: best.isTable ? null : best.guest,
   });
@@ -450,9 +458,11 @@ function bindEvents() {
     matchPicker.innerHTML = "";
     const tableName = data.tables[btn.dataset.table].name;
     const isTable = btn.dataset.guest === tableName;
-    searchStatus.textContent = isTable
-      ? `Found table ${tableName}.`
-      : `Found ${btn.dataset.guest} at ${tableName}.`;
+    searchStatus.innerHTML = foundStatusHtml({
+      guest: btn.dataset.guest,
+      tableName,
+      isTable,
+    });
     searchStatus.classList.remove("is-error");
     showResult(btn.dataset.table, {
       matchedGuest: isTable ? null : btn.dataset.guest,

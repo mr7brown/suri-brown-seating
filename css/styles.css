@@ -225,6 +225,11 @@ body.wf {
   color: #7a3b3b;
 }
 
+.wf-status strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
 .wf-matches {
   display: grid;
   gap: 0.45rem;
@@ -788,15 +793,6 @@ body.wf {
   color: var(--text);
 }
 
-.wf-details__link {
-  margin: 1rem 0 0;
-}
-
-.wf-details__link a {
-  color: var(--green);
-  font-weight: 650;
-}
-
 .wf-assist {
   margin: 1.35rem 0 0.25rem;
   text-align: center;
@@ -911,136 +907,4 @@ body.wf {
     justify-content: flex-start;
     text-align: left;
   }
-}
-
-/* QR page (shared tokens) */
-.qr-page {
-  margin: 0;
-  min-height: 100vh;
-  font-family: var(--font-body);
-  color: var(--text);
-  background: var(--cream);
-}
-
-.qr-main {
-  max-width: 34rem;
-  margin: 0 auto;
-  padding: 2.5rem 1.25rem 3rem;
-  text-align: center;
-}
-
-.qr-page .hero__eyebrow {
-  color: var(--green);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.qr-page .hero__brand {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 10vw, 3.5rem);
-  color: var(--green-deep);
-  margin: 0.5rem 0;
-}
-
-.qr-page .hero__headline {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: var(--green-ink);
-}
-
-.qr-page .hero__lede {
-  color: var(--muted);
-}
-
-.qr-card {
-  margin-top: 1.25rem;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 1.25rem;
-  display: grid;
-  gap: 1rem;
-  justify-items: center;
-}
-
-.qr-code {
-  width: min(100%, 260px);
-  aspect-ratio: 1;
-  background: #fff;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  padding: 0.75rem;
-}
-
-.btn {
-  appearance: none;
-  border: 0;
-  border-radius: 12px;
-  padding: 0.85rem 1.1rem;
-  font: inherit;
-  font-weight: 650;
-  cursor: pointer;
-}
-
-.btn--primary {
-  background: var(--green);
-  color: #fff;
-}
-
-.btn--ghost {
-  background: transparent;
-  color: var(--green);
-  border: 1px solid var(--line);
-}
-
-.field {
-  display: grid;
-  gap: 0.35rem;
-  width: 100%;
-  text-align: left;
-}
-
-.field__label {
-  font-size: 0.75rem;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--green);
-}
-
-.field input {
-  width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 0.85rem;
-  font: inherit;
-}
-
-.qr-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  justify-content: center;
-}
-
-.qr-hint {
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--muted);
-  text-align: left;
-}
-
-.qr-back {
-  margin-top: 1.5rem;
-}
-
-.qr-back a {
-  color: var(--green);
-  font-weight: 650;
-}
-
-.atmosphere {
-  display: none;
 }

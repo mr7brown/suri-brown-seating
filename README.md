@@ -11,7 +11,6 @@ Live site (after Pages is enabled):
 - Interactive floor plan with table highlights and guest lists
 - Tap any table to see who’s seated there
 - Seed guest/table data in a replaceable JSON file
-- Printable QR page (`qr.html`) pointing at the deployed or local URL
 
 ## Run locally
 
@@ -24,17 +23,13 @@ python3 -m http.server 8080
 
 Then open [http://localhost:8080](http://localhost:8080).
 
-QR helper: [http://localhost:8080/qr.html](http://localhost:8080/qr.html)
-
 > Opening `index.html` via `file://` will not load `data/guests.json` in most browsers.
 
-## Guest QR flow
+## Guest flow
 
 1. Deploy the site (GitHub Pages below).
-2. Open `/qr.html` on the deployed URL.
-3. Confirm the destination URL (defaults to the homepage).
-4. Print or screenshot the QR code for table cards / signage.
-5. Guests scan → land on the seating finder → enter their name.
+2. Share `https://mr7brown.github.io/suri-brown-seating/`.
+3. Guests open the seating finder and enter their name.
 
 ## Deploy to GitHub Pages
 
@@ -43,7 +38,6 @@ QR helper: [http://localhost:8080/qr.html](http://localhost:8080/qr.html)
 3. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
 4. Branch: `main`, folder: `/ (root)` → Save.
 5. Wait a minute, then visit `https://mr7brown.github.io/suri-brown-seating/`.
-6. Update the printable QR URL to that address if needed.
 
 Optional: add a custom domain under the same Pages settings.
 
@@ -78,10 +72,8 @@ The importer:
 
 ```
 ├── index.html          # Guest seating finder
-├── qr.html             # Printable QR generator
 ├── css/styles.css
 ├── js/app.js
-├── js/qr.js
 ├── data/guests.json    # Swap this when the spreadsheet arrives
 └── README.md
 ```
