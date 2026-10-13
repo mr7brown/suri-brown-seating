@@ -479,12 +479,6 @@ async function init() {
     refreshMaps();
     bindEvents();
     renderGuestPanel();
-    // QR / phone: bring up keyboard once on load (not again after a result)
-    requestAnimationFrame(() => {
-      if (!activeTableId && document.activeElement !== nameInput) {
-        nameInput.focus({ preventScroll: true });
-      }
-    });
   } catch (error) {
     searchStatus.textContent =
       "Could not load seating data. Serve this folder over HTTP (see README).";
