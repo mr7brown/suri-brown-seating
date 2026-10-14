@@ -1,14 +1,14 @@
 {
   "event": {
-    "title": "Suri\u2013Brown Wedding Reception",
+    "title": "Suri–Brown Wedding Reception",
     "headline": "Find your seat",
     "date": "October 16, 2026",
     "venue": "Grand Ballroom"
   },
   "source": {
-    "file": "Wedding Invitations.xlsx",
-    "sheet": "Seating Chart",
-    "note": "Guest lists and table names from spreadsheet. Floor-plan x/y positions adapted to ballroom + lounge venue sketch (symmetric clusters flanking dance floor). Alternate sheet 'New Seating Chart' was not used."
+    "file": "Seating Chart_Oct 14.xlsx",
+    "sheet": "Edit",
+    "note": "Guest lists and table names from the Edit sheet. Floor-plan positions follow the Oct 14 venue sketch (tables 1–8 left of the dance floor, 9–15 right)."
   },
   "tables": {
     "1": {
@@ -27,58 +27,7 @@
       ]
     },
     "2": {
-      "name": "Field Museum",
-      "guests": [
-        "Rajiv Suri",
-        "Veena Tulsyani",
-        "Rajesh Tulsyani",
-        "Monika Tulsyani",
-        "Himanshu Suri",
-        "Yashvi Suri",
-        "Hema Aware",
-        "Kalaash Aware"
-      ]
-    },
-    "3": {
-      "name": "Buckingham Fountain",
-      "guests": [
-        "Krunal Patel",
-        "Alana Patel",
-        "Sayan Banarjee",
-        "Ammu Dua",
-        "Naveen Dua",
-        "Debra Forman",
-        "Joe Forman"
-      ]
-    },
-    "4": {
-      "name": "Lincoln Park Zoo",
-      "guests": [
-        "Sabbena Uppal",
-        "Lude Gabeau",
-        "Natalie Soomdat",
-        "Chelsie Ferguson",
-        "Omar Mobasher",
-        "Rummanu Yeasin",
-        "Erika Wells",
-        "Esdras"
-      ]
-    },
-    "5": {
-      "name": "Christmaskindle",
-      "guests": [
-        "Rori McDonald",
-        "John Allison",
-        "Lauren Rosario",
-        "Chantel Solomon",
-        "Bruna Lopes",
-        "Ian Lopes",
-        "Trupti Patel",
-        "Aaron Go"
-      ]
-    },
-    "6": {
-      "name": "Chicago River",
+      "name": "White Sox Stadium",
       "guests": [
         "Muskaan Tulsyani",
         "Arushi Gupta",
@@ -90,10 +39,62 @@
         "Israa Ahmed"
       ]
     },
+    "3": {
+      "name": "Buckingham Fountain",
+      "guests": [
+        "Anu Vohra",
+        "Chetna Upadhyaya",
+        "Rajeev Bhandari",
+        "Sashi Kumar",
+        "Sunil Upadhyaya",
+        "Rashmi Shashi",
+        "Sandeep Vohra",
+        "Monika Bhandari",
+        "Rhea Upadhyaya"
+      ]
+    },
+    "4": {
+      "name": "Lincoln Park Zoo",
+      "guests": [
+        "Sapna Batra",
+        "Jyoti Paul",
+        "Vikas Paul",
+        "Anu Agarwal",
+        "Neena Verma",
+        "Ravi Grover",
+        "Pooja Grover",
+        "Raman Sharma"
+      ]
+    },
+    "5": {
+      "name": "Christmaskindle",
+      "guests": [
+        "Gurusharan Bhogal",
+        "Reena Bhogal",
+        "Rick Chopra",
+        "Shelley Chopra",
+        "Kalpana Chandra",
+        "Sandy Chandra",
+        "Naweed Ahmed"
+      ]
+    },
+    "6": {
+      "name": "Chicago River",
+      "guests": [
+        "Veena Gandotra",
+        "Vinod Gandotra",
+        "Sandeep Vijayvargiya",
+        "Nishant Ranjan",
+        "Seema Anand",
+        "Sanjeev Anand",
+        "Priya Sinha",
+        "Jolly Vijayvargiya"
+      ]
+    },
     "7": {
       "name": "Navy Pier",
       "guests": [
-        "Danny Narayanan",
+        "Dhananjay Narayanan",
         "Vinayak Kawatra",
         "Shantanu Kawatra",
         "Saurabh",
@@ -107,6 +108,83 @@
     "8": {
       "name": "Wrigley Field",
       "guests": [
+        "Neha Puri",
+        "Chandar Puri",
+        "Ritvik Puri",
+        "Mayank Puri",
+        "Harmeet Chandra",
+        "Arunesh Chandra",
+        "Manju Ohri",
+        "Puja Ohri"
+      ]
+    },
+    "9": {
+      "name": "Field Museum",
+      "guests": [
+        "Rajiv Suri",
+        "Veena Tulsyani",
+        "Rajesh Tulsyani",
+        "Monika Tulsyani",
+        "Himanshu Suri",
+        "Yashvi Suri",
+        "Hema Aware",
+        "Kalaash Aware"
+      ]
+    },
+    "10": {
+      "name": "Lincoln Park Conservatory",
+      "guests": [
+        "Priya Suri",
+        "Benak Vrishabhendra",
+        "Ekta Suri",
+        "Nitya Suri",
+        "Rajesh Suri",
+        "Sandhya Suri",
+        "Bina Suri",
+        "Geeta mami"
+      ]
+    },
+    "11": {
+      "name": "Soldier Field",
+      "guests": [
+        "Rori McDonald",
+        "John Allison",
+        "Lauren Rosario",
+        "Chantel Solomon",
+        "Bruna Lopes",
+        "Ian Lopes",
+        "Trupti Patel",
+        "Aaron Go"
+      ]
+    },
+    "12": {
+      "name": "Shedd Aquarium",
+      "guests": [
+        "Krunal Patel",
+        "Alana Patel",
+        "Sayan Banarjee",
+        "Ammu Dua",
+        "Naveen Dua",
+        "Debra Forman",
+        "Joe Forman"
+      ]
+    },
+    "13": {
+      "name": "Art Institute of Chicago",
+      "guests": [
+        "Sabbena Uppal",
+        "Lude Gabeau",
+        "Natalie Soomdat",
+        "Chelsie Ferguson",
+        "Omar Mobasher",
+        "Rummanu Yeasin",
+        "Erika Wells",
+        "Esdras Saint-preux"
+      ]
+    },
+    "14": {
+      "name": "Chicago Theatre",
+      "guests": [
         "Jitender Kawatra",
         "Pinky Kawatra",
         "Rama Gautham",
@@ -117,8 +195,8 @@
         "Shweta Gupta"
       ]
     },
-    "9": {
-      "name": "White Sox Stadium",
+    "15": {
+      "name": "Jack's Halloween",
       "guests": [
         "Sheetal Narayanan",
         "Mahesh Narayanan",
@@ -130,118 +208,75 @@
         "Rajesh Gupta"
       ]
     },
-    "10": {
-      "name": "Lincoln Park Conservatory",
-      "guests": [
-        "Priya Suri",
-        "Benak Vrishabhendra",
-        "Ekta Suri",
-        "Nitya Suri",
-        "Romi Suri",
-        "Sandhya Suri",
-        "Bina Suri",
-        "Geeta mami"
-      ]
-    },
-    "11": {
-      "name": "Soldier Field",
-      "guests": [
-        "Veena Gandotra",
-        "Vinod Gandotra",
-        "Sandeep Vijayvargiya",
-        "Nishant Ranjan",
-        "Seema Anand",
-        "Sanjeev Anand",
-        "Priya Sinha",
-        "Jolly Vijayvargiya"
-      ]
-    },
-    "12": {
-      "name": "Shedd Aquarium",
-      "guests": [
-        "Sapna Batra",
-        "Jyoti Paul",
-        "Vikas Paul",
-        "Anu Agarwal",
-        "Neena Verma",
-        "Ravi Grover",
-        "Pooja Grover",
-        "Raman Sharma"
-      ]
-    },
-    "13": {
-      "name": "Art Institute of Chicago",
-      "guests": [
-        "Anu Vohra",
-        "Chetna Upadhyaya",
-        "Rajeev Bhandari",
-        "Sashi Kumar",
-        "Sunil Upadhyaya",
-        "Rashmi Shashi",
-        "Sandeep Vohra",
-        "Monika Bhandari",
-        "Rhea Upadhyaya"
-      ]
-    },
-    "14": {
-      "name": "Chicago Theatre",
-      "guests": [
-        "Gurusharan Bhogal",
-        "Reena Bhogal",
-        "Rick Chopra",
-        "Shelley Chopra",
-        "Kalpana Chandra",
-        "Sandy Chandra",
-        "Naweed Ahmed"
-      ]
-    },
-    "15": {
-      "name": "Jack's Halloween",
-      "guests": [
-        "Neha Puri",
-        "Chandar Puri",
-        "Ritvik Puri",
-        "Mayank Puri",
-        "Harmeet Chandra",
-        "Arunesh Chandra",
-        "Manju Ohri",
-        "Puja Ohri"
-      ]
-    },
     "16": {
       "name": "Vendor Table",
       "guests": []
     }
   },
   "positions": {
-    "1": { "x": 30, "y": 25 },
-    "2": { "x": 67, "y": 25 },
-    "3": { "x": 17, "y": 32 },
-    "4": { "x": 80, "y": 32 },
-    "5": { "x": 8, "y": 39 },
-    "6": { "x": 87, "y": 42 },
-    "7": { "x": 30, "y": 39 },
-    "8": { "x": 67, "y": 39 },
-    "9": { "x": 17, "y": 47 },
-    "10": { "x": 79, "y": 50 },
-    "11": { "x": 8, "y": 54 },
-    "12": { "x": 30, "y": 53 },
-    "13": { "x": 67, "y": 53 },
-    "14": { "x": 18, "y": 62 },
-    "15": { "x": 80, "y": 62 },
-    "16": { "x": 67, "y": 68 }
+    "1": {
+      "x": 30,
+      "y": 25
+    },
+    "2": {
+      "x": 30,
+      "y": 39
+    },
+    "3": {
+      "x": 17,
+      "y": 32
+    },
+    "4": {
+      "x": 8,
+      "y": 39
+    },
+    "5": {
+      "x": 17,
+      "y": 47
+    },
+    "6": {
+      "x": 8,
+      "y": 54
+    },
+    "7": {
+      "x": 18,
+      "y": 62
+    },
+    "8": {
+      "x": 30,
+      "y": 53
+    },
+    "9": {
+      "x": 67,
+      "y": 25
+    },
+    "10": {
+      "x": 67,
+      "y": 39
+    },
+    "11": {
+      "x": 80,
+      "y": 32
+    },
+    "12": {
+      "x": 87,
+      "y": 42
+    },
+    "13": {
+      "x": 79,
+      "y": 50
+    },
+    "14": {
+      "x": 67,
+      "y": 53
+    },
+    "15": {
+      "x": 80,
+      "y": 62
+    },
+    "16": {
+      "x": 67,
+      "y": 68
+    }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
