@@ -1,0 +1,29 @@
+---
+description: Push this repo from Chrome Canary signed in as mr7brown
+alwaysApply: true
+---
+
+# GitHub push identity
+
+This repo is `mr7brown/suri-brown-seating`. Machine HTTPS credentials authenticate as `mr44brown` and get 403 on that remote. Google Chrome is signed in as `mr44brown`. Google Chrome Canary is signed in as `mr7brown`.
+
+When pushing or authorizing GitHub for this repo:
+
+- Open GitHub in **Google Chrome Canary** only (app name `Google Chrome Canary`), signed in as `mr7brown`.
+- Leave regular Google Chrome closed for this flow. Do not use the `mr44brown` login.
+- Do not change `git config` or git remotes to work around the 403.
+- For device-code login, open `https://github.com/login/device` in a new Chrome Canary tab, activate that app and tab, and have the user enter the code there as `mr7brown`.
+
+```applescript
+tell application "Google Chrome Canary"
+  activate
+  if (count of windows) = 0 then
+    make new window
+  end if
+  tell front window
+    set newTab to make new tab with properties {URL:"https://github.com/login/device"}
+  end tell
+  set active tab index of front window to (count of tabs of front window)
+  activate
+end tell
+```
