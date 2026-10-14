@@ -79,10 +79,11 @@ function seatmateLine(tableId, matchedGuest) {
   );
   const shown = others.slice(0, 3);
   const more = others.length - shown.length;
+  const guestCount = `${table.guests.length} guest${table.guests.length === 1 ? "" : "s"}`;
 
   let meta;
   if (!shown.length) {
-    meta = `Table ${tableId} · ${table.guests.length} guest${table.guests.length === 1 ? "" : "s"}`;
+    meta = guestCount;
   } else if (more > 0) {
     meta = `With ${shown.join(", ")}, and ${more} more`;
   } else if (shown.length === 1) {
@@ -95,7 +96,7 @@ function seatmateLine(tableId, matchedGuest) {
 
   return {
     meta,
-    sub: `Table ${tableId} · ${table.guests.length} guest${table.guests.length === 1 ? "" : "s"}`,
+    sub: guestCount,
   };
 }
 
