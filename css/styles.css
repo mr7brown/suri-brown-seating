@@ -462,15 +462,6 @@ body.wf {
   font-size: 0.45rem;
 }
 
-.wf-map--mini .wf-map__landmark--bar {
-  left: 12%;
-  top: 68%;
-  font-size: 0.46rem;
-  padding: 0.06rem 0.16rem;
-  writing-mode: horizontal-tb;
-  transform: translate(-50%, -50%);
-}
-
 .wf-map--mini .wf-map__you-name {
   max-width: 5.5rem;
   font-size: 0.55rem;
@@ -513,16 +504,6 @@ body.wf {
   font-size: 0.52rem;
   letter-spacing: 0.02em;
   text-transform: none;
-}
-
-/* Horizontal badge, lower-left of the tan ballroom, just above the lounge. */
-.wf-map__landmark--bar {
-  left: 12%;
-  top: 68%;
-  writing-mode: horizontal-tb;
-  transform: translate(-50%, -50%);
-  background: rgba(212, 175, 55, 0.28);
-  color: #5c4418;
 }
 
 .wf-map__landmark--buffet {
@@ -721,13 +702,6 @@ body.wf {
   font-size: 0.58rem;
   max-width: 32%;
   padding: 0.22rem 0.4rem;
-}
-
-.wf-map--desk .wf-map__landmark--bar {
-  left: 12%;
-  top: 68%;
-  writing-mode: horizontal-tb;
-  transform: translate(-50%, -50%);
 }
 
 .wf-map--desk .wf-map__dance-label {

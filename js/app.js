@@ -189,7 +189,6 @@ function renderMap(container, { activeId = null, showPath = false } = {}) {
     </div>
     <span class="wf-map__landmark wf-map__landmark--dj">DJ</span>
     <span class="wf-map__landmark wf-map__landmark--brown">Mr &amp; Mrs. Brown</span>
-    <span class="wf-map__landmark wf-map__landmark--bar">Bar</span>
     <span class="wf-map__landmark wf-map__landmark--buffet">Buffet</span>
     <div class="wf-map__lounge">Lounge</div>
     ${path}
@@ -560,12 +559,17 @@ function bindEvents() {
     if (!btn) return;
     nameInput.value = btn.dataset.guestPick;
     showResult(btn.dataset.table, { matchedGuest: btn.dataset.guestPick });
+    setTab("find");
   });
 
   tableList.addEventListener("click", (event) => {
     const btn = event.target.closest("[data-browse-table]");
     if (!btn) return;
-    openTable(btn.dataset.browseTable);
+    const tableId = btn.dataset.browseTable;
+    const table = data.tables[tableId];
+    if (table) nameInput.value = table.name;
+    showResult(tableId);
+    setTab("find");
   });
 
   tablesBack.addEventListener("click", () => {
