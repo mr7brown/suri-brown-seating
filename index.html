@@ -22,7 +22,7 @@
       <div class="wf-column">
         <header class="wf-top">
           <div class="wf-brand">
-            <p class="wf-brand__title">Wayfinder</p>
+            <button type="button" class="wf-brand__title">Wayfinder</button>
             <p class="wf-brand__meta">Suri–Brown · Oct 16</p>
           </div>
           <h1 class="wf-headline">Find your spot</h1>
@@ -34,6 +34,9 @@
           </button>
           <button type="button" class="wf-tabs__btn" data-tab="guests" aria-pressed="false">
             Guest list
+          </button>
+          <button type="button" class="wf-tabs__btn" data-tab="tables" aria-pressed="false">
+            Tables
           </button>
           <button type="button" class="wf-tabs__btn" data-tab="details" aria-pressed="false">
             Details
@@ -115,8 +118,27 @@
 
         <section id="panel-guests" class="wf-panel" data-panel="guests" hidden>
           <h2 class="wf-panel__heading" id="guests-heading">Guest list</h2>
-          <p id="guests-lede" class="wf-panel__lede"></p>
+          <p id="guests-lede" class="wf-panel__lede">Tap a name to highlight their table.</p>
           <ul id="guest-list" class="wf-guest-list"></ul>
+        </section>
+
+        <section id="panel-tables" class="wf-panel" data-panel="tables" hidden>
+          <div id="tables-list-view">
+            <h2 class="wf-panel__heading">Tables</h2>
+            <p class="wf-panel__lede">Tap a table to see who is seated there.</p>
+            <ul id="table-list" class="wf-guest-list"></ul>
+          </div>
+          <div id="tables-detail-view" hidden>
+            <button type="button" class="wf-back" id="tables-back">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M15 5 8 12l7 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              All tables
+            </button>
+            <h2 class="wf-panel__heading" id="tables-heading"></h2>
+            <p id="tables-lede" class="wf-panel__lede"></p>
+            <ul id="table-guests" class="wf-guest-list"></ul>
+          </div>
         </section>
 
         <section id="panel-details" class="wf-panel" data-panel="details" hidden>
@@ -182,6 +204,13 @@
           <path d="M4.5 18c1.2-2.4 2.8-3.6 4.5-3.6s3.3 1.2 4.5 3.6M11 18c1.2-2.4 2.8-3.6 4.5-3.6s3.3 1.2 4.5 3.6" stroke-linecap="round" />
         </svg>
         <span>Guest list</span>
+      </button>
+      <button type="button" class="wf-bottom__btn" data-tab="tables" aria-pressed="false">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <rect x="3.5" y="8" width="17" height="3.2" rx="0.6" />
+          <path d="M7 11.2V18M17 11.2V18" stroke-linecap="round" />
+        </svg>
+        <span>Tables</span>
       </button>
       <button type="button" class="wf-bottom__btn" data-tab="details" aria-pressed="false">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">

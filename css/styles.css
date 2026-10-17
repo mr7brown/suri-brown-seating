@@ -84,15 +84,21 @@ body.wf {
 }
 
 .wf-brand__title {
+  appearance: none;
   margin: 0;
+  padding: 0 0 0.1rem;
+  border: 0;
+  border-bottom: 2px solid var(--gold);
+  background: transparent;
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--gold);
   letter-spacing: 0.01em;
-  border-bottom: 2px solid var(--gold);
-  padding-bottom: 0.1rem;
   line-height: 1.1;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .wf-brand__meta {
@@ -456,6 +462,15 @@ body.wf {
   font-size: 0.45rem;
 }
 
+.wf-map--mini .wf-map__landmark--bar {
+  left: 12%;
+  top: 68%;
+  font-size: 0.46rem;
+  padding: 0.06rem 0.16rem;
+  writing-mode: horizontal-tb;
+  transform: translate(-50%, -50%);
+}
+
 .wf-map--mini .wf-map__you-name {
   max-width: 5.5rem;
   font-size: 0.55rem;
@@ -500,11 +515,12 @@ body.wf {
   text-transform: none;
 }
 
+/* Horizontal badge, lower-left of the tan ballroom, just above the lounge. */
 .wf-map__landmark--bar {
-  left: 3.5%;
-  top: 20%;
-  writing-mode: vertical-rl;
-  transform: translate(-50%, -50%) rotate(180deg);
+  left: 12%;
+  top: 68%;
+  writing-mode: horizontal-tb;
+  transform: translate(-50%, -50%);
   background: rgba(212, 175, 55, 0.28);
   color: #5c4418;
 }
@@ -707,6 +723,13 @@ body.wf {
   padding: 0.22rem 0.4rem;
 }
 
+.wf-map--desk .wf-map__landmark--bar {
+  left: 12%;
+  top: 68%;
+  writing-mode: horizontal-tb;
+  transform: translate(-50%, -50%);
+}
+
 .wf-map--desk .wf-map__dance-label {
   font-size: 0.72rem;
   padding: 0.15rem 0.35rem;
@@ -735,6 +758,27 @@ body.wf {
   font-size: 0.95rem;
 }
 
+.wf-back {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 650;
+  padding: 0.1rem 0 0.85rem;
+  margin: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.wf-back:hover,
+.wf-back:focus-visible {
+  color: var(--green-deep);
+}
+
 .wf-guest-list {
   list-style: none;
   margin: 0;
@@ -754,6 +798,20 @@ body.wf {
   background: rgba(212, 175, 55, 0.28);
   color: #4a3a18;
   font-weight: 700;
+  scroll-margin-top: 0.75rem;
+  scroll-margin-bottom: calc(var(--nav-h) + 0.75rem);
+}
+
+.wf-guest-list__sub {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.wf-guest-list li.is-match .wf-guest-list__sub {
+  color: #6a5424;
 }
 
 .wf-guest-list li button {
@@ -815,7 +873,7 @@ body.wf {
   bottom: 0;
   z-index: 20;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.15rem;
   padding: 0.45rem 0.5rem calc(0.45rem + env(safe-area-inset-bottom, 0px));
   background: rgba(255, 251, 245, 0.96);
@@ -829,15 +887,24 @@ body.wf {
   border: 0;
   background: transparent;
   font: inherit;
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   font-weight: 650;
+  line-height: 1.15;
   color: var(--muted);
   display: grid;
+  align-content: start;
   justify-items: center;
   gap: 0.2rem;
-  padding: 0.35rem 0.2rem;
+  min-width: 0;
+  padding: 0.35rem 0.15rem;
   cursor: pointer;
   border-radius: 10px;
+}
+
+.wf-bottom__btn span {
+  display: block;
+  max-width: 100%;
+  text-align: center;
 }
 
 .wf-bottom__btn.is-active {
@@ -906,5 +973,16 @@ body.wf {
   .wf-assist {
     justify-content: flex-start;
     text-align: left;
+  }
+
+  .wf-tabs__btn {
+    white-space: nowrap;
+  }
+
+  .wf-guest-list {
+    max-height: calc(100vh - 22.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 0.15rem;
   }
 }

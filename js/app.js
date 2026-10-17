@@ -11,6 +11,13 @@ const emptyHint = document.getElementById("empty-hint");
 const guestList = document.getElementById("guest-list");
 const guestsHeading = document.getElementById("guests-heading");
 const guestsLede = document.getElementById("guests-lede");
+const tableList = document.getElementById("table-list");
+const tablesListView = document.getElementById("tables-list-view");
+const tablesDetailView = document.getElementById("tables-detail-view");
+const tablesHeading = document.getElementById("tables-heading");
+const tablesLede = document.getElementById("tables-lede");
+const tableGuests = document.getElementById("table-guests");
+const tablesBack = document.getElementById("tables-back");
 const mapMobile = document.getElementById("map-mobile");
 const mapDesktop = document.getElementById("map-desktop");
 const mapCaption = document.getElementById("map-caption");
@@ -18,6 +25,8 @@ const mapCaption = document.getElementById("map-caption");
 /** @type {{ event: object, tables: Record<string, {name: string, guests: string[]}>, positions: Record<string, {x: number, y: number}> }} */
 let data = null;
 let activeTableId = null;
+/** Roster open inside the Tables tab. Null shows every table. */
+let tableDetailId = null;
 /** @type {string | null} */
 let matchedGuestName = null;
 let activeTab = "find";
@@ -194,6 +203,7 @@ function refreshMaps() {
 }
 
 function setTab(tab) {
+  if (tab === "tables") tableDetailId = null;
   activeTab = tab;
   document.querySelectorAll(".wf-panel").forEach((panel) => {
     const on = panel.dataset.panel === tab;
@@ -205,44 +215,108 @@ function setTab(tab) {
     btn.classList.toggle("is-active", on);
     btn.setAttribute("aria-pressed", on ? "true" : "false");
   });
-  if (tab === "guests") renderGuestPanel();
+  if (tab === "guests") renderGuestPanel({ scrollToMatch: true });
+  if (tab === "tables") renderTablesPanel();
 }
 
-function renderGuestPanel() {
+function sameGuest(a, b) {
+  return Boolean(a && b) && normalize(a) === normalize(b);
+}
+
+function listGuests() {
+  const rows = [];
+  for (const id of visibleTableIds()) {
+    const table = data.tables[id];
+    for (const guest of table.guests) {
+      rows.push({ guest, tableId: id, tableName: table.name });
+    }
+  }
+  rows.sort((a, b) => {
+    const byName = normalize(a.guest).localeCompare(normalize(b.guest));
+    if (byName) return byName;
+    return Number(a.tableId) - Number(b.tableId);
+  });
+  return rows;
+}
+
+function renderGuestPanel({ scrollToMatch = false } = {}) {
   if (!data) return;
 
-  if (activeTableId && data.tables[activeTableId]) {
-    const table = data.tables[activeTableId];
-    guestsHeading.textContent = table.name;
-    guestsLede.textContent = `Table ${activeTableId} · ${table.guests.length} guest${
-      table.guests.length === 1 ? "" : "s"
-    }`;
-    const guests = table.guests.length ? table.guests : ["No guests listed yet"];
-    guestList.innerHTML = guests
+  const guests = listGuests();
+  guestsHeading.textContent = "Guest list";
+  guestsLede.textContent = guests.length
+    ? "Tap a name to highlight their table."
+    : "No guests listed yet.";
+
+  const previousScroll = guestList.scrollTop;
+  guestList.innerHTML = guests
+    .map(({ guest, tableId, tableName }) => {
+      const isMatch = sameGuest(guest, matchedGuestName) && activeTableId === tableId;
+      return `<li${isMatch ? ' class="is-match"' : ""}>
+        <button type="button" data-guest-pick="${escapeHtml(guest)}" data-table="${tableId}"${
+          isMatch ? ' aria-current="true"' : ""
+        }>
+          <strong>${escapeHtml(guest)}</strong>
+          <span class="wf-guest-list__sub">${escapeHtml(tableName)} · Table ${tableId}</span>
+        </button>
+      </li>`;
+    })
+    .join("");
+
+  if (scrollToMatch) {
+    guestList.querySelector(".is-match")?.scrollIntoView({ block: "nearest" });
+  } else {
+    guestList.scrollTop = previousScroll;
+  }
+}
+
+function renderTablesPanel() {
+  if (!data) return;
+
+  const showingDetail =
+    tableDetailId && data.tables[tableDetailId] && tableDetailId !== "16";
+  tablesListView.hidden = Boolean(showingDetail);
+  tablesDetailView.hidden = !showingDetail;
+
+  if (showingDetail) {
+    const table = data.tables[tableDetailId];
+    tablesHeading.textContent = table.name;
+    const count = table.guests.length;
+    tablesLede.textContent = `Table ${tableDetailId} · ${count} guest${count === 1 ? "" : "s"}`;
+    const guests = count ? table.guests : ["No guests listed yet"];
+    tableGuests.innerHTML = guests
       .map((guest) => {
-        const isMatch =
-          matchedGuestName && normalize(guest) === normalize(matchedGuestName);
+        const isMatch = sameGuest(guest, matchedGuestName);
         return `<li${isMatch ? ' class="is-match"' : ""}>${escapeHtml(guest)}</li>`;
       })
       .join("");
     return;
   }
 
-  guestsHeading.textContent = "Guest list";
-  guestsLede.textContent = "Search your name first, or browse tables below.";
-  guestList.innerHTML = visibleTableIds()
+  tableDetailId = null;
+  tableList.innerHTML = visibleTableIds()
     .map((id) => {
       const table = data.tables[id];
-      return `<li>
-        <button type="button" data-browse-table="${id}">
+      const selected = id === activeTableId;
+      const count = table.guests.length;
+      return `<li${selected ? ' class="is-match"' : ""}>
+        <button type="button" data-browse-table="${id}"${selected ? ' aria-current="true"' : ""}>
           <strong>${escapeHtml(table.name)}</strong>
-          <span style="display:block;font-size:0.88rem;color:var(--muted);font-weight:500">
-            Table ${id} · ${table.guests.length} guests
-          </span>
+          <span class="wf-guest-list__sub">Table ${id} · ${count} guest${count === 1 ? "" : "s"}</span>
         </button>
       </li>`;
     })
     .join("");
+}
+
+function openTable(tableId) {
+  const table = data.tables[tableId];
+  if (!table || tableId === "16") return;
+  const matchedGuest = tableId === activeTableId && matchedGuestName ? matchedGuestName : null;
+  tableDetailId = tableId;
+  if (matchedGuest) nameInput.value = matchedGuest;
+  else nameInput.value = table.name;
+  showResult(tableId, { matchedGuest });
 }
 
 function showResult(tableId, { matchedGuest = null } = {}) {
@@ -264,11 +338,19 @@ function showResult(tableId, { matchedGuest = null } = {}) {
   matchPicker.innerHTML = "";
   refreshMaps();
 
+  searchStatus.classList.remove("is-error");
+  searchStatus.innerHTML = foundStatusHtml({
+    guest: matchedGuest || table.name,
+    tableName: table.name,
+    isTable: !matchedGuest,
+  });
+
   if (mapCaption) {
     mapCaption.textContent = `${table.name} — ${directionForTable(tableId)}`;
   }
 
   if (activeTab === "guests") renderGuestPanel();
+  if (activeTab === "tables") renderTablesPanel();
 }
 
 function clearSelection({ keepStatus = false } = {}) {
@@ -288,6 +370,7 @@ function clearSelection({ keepStatus = false } = {}) {
     searchStatus.classList.remove("is-error");
   }
   if (activeTab === "guests") renderGuestPanel();
+  if (activeTab === "tables") renderTablesPanel();
 }
 
 function findMatches(query) {
@@ -423,17 +506,21 @@ function runSearch(rawQuery, { fromSubmit = false } = {}) {
   matchPicker.hidden = true;
   matchPicker.innerHTML = "";
   const best = matches[0];
-  searchStatus.innerHTML = foundStatusHtml({
-    guest: best.guest,
-    tableName: best.tableName,
-    isTable: best.isTable,
-  });
   showResult(best.tableId, {
     matchedGuest: best.isTable ? null : best.guest,
   });
 }
 
+function resetToDefault() {
+  nameInput.value = "";
+  tableDetailId = null;
+  clearSelection();
+  setTab("find");
+}
+
 function bindEvents() {
+  document.querySelector(".wf-brand__title")?.addEventListener("click", resetToDefault);
+
   searchForm.addEventListener("submit", (event) => {
     event.preventDefault();
     runSearch(nameInput.value, { fromSubmit: true });
@@ -459,12 +546,6 @@ function bindEvents() {
     matchPicker.innerHTML = "";
     const tableName = data.tables[btn.dataset.table].name;
     const isTable = btn.dataset.guest === tableName;
-    searchStatus.innerHTML = foundStatusHtml({
-      guest: btn.dataset.guest,
-      tableName,
-      isTable,
-    });
-    searchStatus.classList.remove("is-error");
     showResult(btn.dataset.table, {
       matchedGuest: isTable ? null : btn.dataset.guest,
     });
@@ -475,10 +556,21 @@ function bindEvents() {
   });
 
   guestList.addEventListener("click", (event) => {
+    const btn = event.target.closest("[data-guest-pick]");
+    if (!btn) return;
+    nameInput.value = btn.dataset.guestPick;
+    showResult(btn.dataset.table, { matchedGuest: btn.dataset.guestPick });
+  });
+
+  tableList.addEventListener("click", (event) => {
     const btn = event.target.closest("[data-browse-table]");
     if (!btn) return;
-    showResult(btn.dataset.browseTable);
-    setTab("find");
+    openTable(btn.dataset.browseTable);
+  });
+
+  tablesBack.addEventListener("click", () => {
+    tableDetailId = null;
+    renderTablesPanel();
   });
 }
 
@@ -490,6 +582,7 @@ async function init() {
     refreshMaps();
     bindEvents();
     renderGuestPanel();
+    renderTablesPanel();
   } catch (error) {
     searchStatus.textContent =
       "Could not load seating data. Serve this folder over HTTP (see README).";
